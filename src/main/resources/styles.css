@@ -1,0 +1,35 @@
+
+.tableHeader::first-line{
+    -fx-background-color: #ff0000;
+    -fx-font-size: 12px;
+    -fx-text-fill: #00aaff;
+    -fx-font-weight: bold;
+}
+
+.buttons{
+    -fx-background-color: #ff0000;
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+
+.buttons:hover{
+    -fx-background-color: #fe99a8;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn_main_menu{
+    -fx-background-color:  #00ff00;
+    -fx-text-fill: #000000;
+}
+
+.btn_main_menu:hover{
+    -fx-background-color: #014601;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+
+}

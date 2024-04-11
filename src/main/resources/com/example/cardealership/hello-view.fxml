@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cardealership.HelloController">
+   <children>
+      <Label layoutX="276.0" layoutY="52.0" text="Welcome to your car dealer" textFill="LIME">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="250.0" fitWidth="500.0" layoutX="86.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="428.66666666666663" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="200.0">
+         <image>
+            <Image url="@images/lamborghini-Red.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="250.0" fitWidth="500.0" layoutX="648.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="200.0">
+         <image>
+            <Image url="@images/lamborghini.Yellow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="250.0" fitWidth="500.0" layoutX="80.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="32.0">
+         <image>
+            <Image url="@images/Bugatti-new.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="250.0" fitWidth="500.0" layoutX="593.0" layoutY="585.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0">
+         <image>
+            <Image url="@images/Chevorlet.png" />
+         </image>
+      </ImageView>
+      <MenuBar fx:id="mymenubar" layoutX="-3.0" layoutY="-1.0" prefHeight="31.0" prefWidth="1204.0" style="-fx-background-color: #aaff7f; -fx-cursor: hand;">
+        <menus>
+          <Menu fx:id="menu_addnewvehicle" mnemonicParsing="false" text="Main Menu">
+            <items>
+              <MenuItem fx:id="menuitem_addnewvehicle" mnemonicParsing="false" text="Add new vehicle">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Bugatti-new.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Overview">
+            <items>
+              <MenuItem fx:id="menuitem_vehicle_table" mnemonicParsing="false" text="Vehicle Table">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Bugatti-New.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

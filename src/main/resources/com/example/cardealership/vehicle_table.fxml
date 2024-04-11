@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cardealership.VehicleTable">
+   <children>
+      <Label layoutX="428.0" layoutY="52.0" text="Vehicle Table" textFill="#00aaff">
+         <font>
+            <Font name="Arial Bold Italic" size="50.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableview_vehicle" layoutX="14.0" layoutY="132.0" prefHeight="585.0" prefWidth="1150.0" style="-fx-cursor: hand;" AnchorPane.leftAnchor="20.0">
+        <columns>
+          <TableColumn fx:id="tablecolumn_id" prefWidth="57.55554473400116" styleClass="tableHeader" text="ID" />
+          <TableColumn fx:id="tablecolumn_vehicle_name" prefWidth="104.44441986083984" styleClass="tableHeader" text="Vehicle name" />
+            <TableColumn fx:id="tablecolumn_manufacturer" prefWidth="109.111083984375" styleClass="tableHeader" text="Manufacturer" />
+            <TableColumn fx:id="tablecolumn_construction_year" prefWidth="110.0" styleClass="tableHeader" text="Construction Year" />
+            <TableColumn fx:id="tablecolumn_km_stood" prefWidth="134.66665649414062" styleClass="tableHeader" text="Km stood" />
+            <TableColumn fx:id="tablecolumn_condition" prefWidth="109.55560302734375" styleClass="tableHeader" text="Condition" />
+            <TableColumn fx:id="tablecolumn_pieces" prefWidth="126.4444580078125" styleClass="tableHeader" text="Pieces" />
+            <TableColumn fx:id="tablecolumn_price" prefWidth="120.22222900390625" styleClass="tableHeader" text="Price" />
+            <TableColumn fx:id="tablecolumn_currency" prefWidth="115.77789306640625" styleClass="tableHeader" text="Currency" />
+            <TableColumn fx:id="tablecolumn_availability" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" styleClass="tableHeader" text="Availability" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_main_menu" layoutX="20.0" layoutY="728.0" minHeight="80.0" minWidth="1150.0" mnemonicParsing="false" style="-fx-cursor: hand;" styleClass="btn_main_menu" text="Main Menu">
+         <font>
+            <Font name="Arial Bold Italic" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
