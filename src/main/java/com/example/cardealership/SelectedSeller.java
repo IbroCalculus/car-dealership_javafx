@@ -1,6 +1,5 @@
 package com.example.cardealership;
 
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,23 +23,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.example.cardealership.VehicleTable.*;
 import static com.example.cardealership.utils.Utils.customAlert;
 import static com.example.cardealership.utils.Utils.customConfirmationAlert;
 
-public class SelectedVehicle implements Initializable {
-
-    @FXML
-    private Button btn_delete;
+public class SelectedSeller implements Initializable {
 
     @FXML
     private AnchorPane my_anchor_pane;
 
     @FXML
+    private Button btn_delete;
+
+    @FXML
     private Button btn_save_picture;
 
     @FXML
-    private Button btn_table_vehicle;
+    private Button btn_table_seller;
 
     @FXML
     private Button btn_update;
@@ -49,54 +47,32 @@ public class SelectedVehicle implements Initializable {
     private Button btn_upload_picture;
 
     @FXML
-    private ImageView imageview_vehicle_picture;
+    private ImageView imageview_seller_picture;
 
     @FXML
-    private TextField tf_availability;
+    private TextField tf_address;
 
     @FXML
-    private TextField tf_condition;
+    private TextField tf_email;
 
     @FXML
-    private TextField tf_construction_year;
+    private TextField tf_phone_number;
 
     @FXML
-    private TextField tf_currency;
+    private TextField tf_seller_id;
 
     @FXML
-    private TextField tf_km_stood;
-
-    @FXML
-    private TextField tf_manufacturer;
-
-    @FXML
-    private TextField tf_number_of_pieces;
-
-    @FXML
-    private TextField tf_price;
-
-    @FXML
-    private TextField tf_vehicle_id;
-
-    @FXML
-    private TextField tf_vehicle_name;
+    private TextField tf_seller_name;
 
     public static int id;
-    public static String vehicle_name;
-    public static String manufacturer;
-    public static String construction_year;
-    public static double km_stood;
-    public static String vehicle_condition;
-    public static int pieces;
-    public static double price;
-    public static String currency;
-    public static String availability;
+    public static String seller_name;
+    public static String seller_phone;
+    public static String email;
+    public static String address;
     public static Blob picture;
-
     public static String path;
     List<String> lstFile;
     FileInputStream fileInputStream;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -104,47 +80,34 @@ public class SelectedVehicle implements Initializable {
         lstFile.add("*.png");
         lstFile.add("*.jpg");
 
+        id = SellerTable.id;
+        seller_name = SellerTable.seller_name;
+        seller_phone = SellerTable.seller_phone;
+        email = SellerTable.email;
+        address = SellerTable.address;
+        picture = SellerTable.picture;
 
-        id = VehicleTable.id;
-        vehicle_name = VehicleTable.vehicle_name;
-        manufacturer = VehicleTable.manufacturer;
-        construction_year = VehicleTable.construction_year;
-        km_stood = VehicleTable.km_stood;
-        vehicle_condition = VehicleTable.vehicle_condition;
-        pieces = VehicleTable.pieces;
-        price = VehicleTable.price;
-        currency = VehicleTable.currency;
-        availability = VehicleTable.availability;
-        picture = VehicleTable.picture;
-
-
-        tf_vehicle_id.setText(String.valueOf(id));
-        tf_vehicle_name.setText(vehicle_name);
-        tf_manufacturer.setText(manufacturer);
-        tf_construction_year.setText(construction_year);
-        tf_km_stood.setText(String.valueOf(km_stood));
-        tf_km_stood.setText(String.valueOf(km_stood));
-        tf_condition.setText(vehicle_condition);
-        tf_number_of_pieces.setText(String.valueOf(pieces));
-        tf_price.setText(String.valueOf(price));
-        tf_currency.setText(currency);
-        tf_availability.setText(availability);
+        tf_seller_id.setText(String.valueOf(id));
+        tf_seller_name.setText(seller_name);
+        tf_phone_number.setText(seller_phone);
+        tf_email.setText(email);
+        tf_address.setText(address);
 
         try {
             InputStream inputStream = picture.getBinaryStream();
             Image image = new Image(inputStream);
-            imageview_vehicle_picture.setImage(image);
+            imageview_seller_picture.setImage(image);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        btn_table_vehicle.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(VehicleTable.class.getResource("vehicle_table.fxml"));
+        btn_table_seller.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(SellerTable.class.getResource("seller_table.fxml"));
             try {
                 Parent root = fxmlLoader.load();
-                Stage stage = (Stage) btn_table_vehicle.getScene().getWindow();
+                Stage stage = (Stage) btn_table_seller.getScene().getWindow();
                 stage.setScene(new Scene(root, 1200, 900));
-                stage.setTitle("Welcome!");
+//                stage.setTitle("Welcome!");
                 stage.setMaxHeight(900);
                 stage.setMaxWidth(1200);
                 stage.show();
@@ -165,7 +128,7 @@ public class SelectedVehicle implements Initializable {
                 path = file.getAbsolutePath();
                 try {
                     Image image = new Image(file.toURI().toURL().toString());
-                    imageview_vehicle_picture.setImage(image);
+                    imageview_seller_picture.setImage(image);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -180,7 +143,7 @@ public class SelectedVehicle implements Initializable {
             }
             try {
                 fileInputStream = new FileInputStream(path);
-                boolean inserted = DBConnection.updateVehiclePicture(id, fileInputStream);
+                boolean inserted = DBConnection.updateSellerPicture(id, fileInputStream);
                 if(inserted){
                     customAlert(Alert.AlertType.INFORMATION,"Picture Saved","The picture has been saved","Close");
                 }else{
@@ -193,20 +156,24 @@ public class SelectedVehicle implements Initializable {
         });
 
         btn_update.setOnAction(event -> {
-        });
+            id = Integer.parseInt(tf_seller_id.getText());
+            seller_name = tf_seller_name.getText();
+            seller_phone = tf_phone_number.getText();
+            email = tf_email.getText();
+            address = tf_address.getText();
 
-        btn_delete.setOnAction(event -> {
-            customConfirmationAlert(Alert.AlertType.CONFIRMATION,"Delete Vehicle","Are you sure you want to delete this vehicle?","Yes",() -> {
-                boolean deleted = DBConnection.deleteVehicleData(id);
-                if(deleted){
-                    customAlert(Alert.AlertType.INFORMATION,"Vehicle Deleted","The vehicle has been deleted","Close");
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(VehicleTable.class.getResource("vehicle_table.fxml"));
+            customConfirmationAlert(Alert.AlertType.CONFIRMATION,"Update Seller Detail","Are you sure you want to update this seller's information?","Yes",() -> {
+                boolean updated = DBConnection.updateSellerData(id, seller_name, seller_phone, email, address);
+                if(updated){
+                    customAlert(Alert.AlertType.INFORMATION,"Seller information updated","The seller's information has been updated","Close");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(SellerTable.class.getResource("seller_table.fxml"));
                     try {
                         Parent root = fxmlLoader.load();
                         Stage stage = (Stage) btn_delete.getScene().getWindow();
                         stage.setScene(new Scene(root, 1200, 900));
-                        stage.setTitle("Welcome!");
+//                        stage.setTitle("Welcome!");
                         stage.setMaxHeight(900);
                         stage.setMaxWidth(1200);
                         stage.show();
@@ -214,11 +181,34 @@ public class SelectedVehicle implements Initializable {
                         e.printStackTrace();
                     }
                 }else{
-                    customAlert(Alert.AlertType.ERROR,"Vehicle Error","The vehicle could not be deleted","Close");
+                    customAlert(Alert.AlertType.ERROR,"Seller Error","The seller could not be deleted","Close");
                 }
             });
         });
 
+        btn_delete.setOnAction(event -> {
+            customConfirmationAlert(Alert.AlertType.CONFIRMATION,"Delete Seller","Are you sure you want to delete this Seller?","Yes",() -> {
+                boolean deleted = DBConnection.deleteSellerData(id);
+                if(deleted){
+                    customAlert(Alert.AlertType.INFORMATION,"Seller Deleted","The seller has been deleted","Close");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(SellerTable.class.getResource("seller_table.fxml"));
+                    try {
+                        Parent root = fxmlLoader.load();
+                        Stage stage = (Stage) btn_delete.getScene().getWindow();
+                        stage.setScene(new Scene(root, 1200, 900));
+//                        stage.setTitle("Welcome!");
+                        stage.setMaxHeight(900);
+                        stage.setMaxWidth(1200);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    customAlert(Alert.AlertType.ERROR,"Seller Error","The seller could not be deleted","Close");
+                }
+            });
+        });
 
 
 

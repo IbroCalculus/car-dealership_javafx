@@ -10,7 +10,7 @@ public class Utils {
     public static void customAlert(Alert.AlertType alertType, String title, String headerText, String contentText){
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
-//        alert.setHeaderText(headerText);
+        alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.show();
         //alert.showAndWait();
@@ -21,13 +21,12 @@ public class Utils {
         void onConfirmed();
     }
 
-
     public static void customConfirmationAlert(Alert.AlertType alertType, String title, String headerText, String contentText, ConfirmationCallback callback){
 
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
+//        alert.setContentText(contentText);
 
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){

@@ -19,12 +19,24 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
     @FXML
     private MenuBar mymenubar;
+
+    @FXML
+    private MenuItem menuitem_addnew_seller;
+
     @FXML
     private Menu menu_addnewvehicle;
+
+    @FXML
+    private MenuItem menuitem_addnew_customer;
+
     @FXML
     private MenuItem menuitem_addnewvehicle;
+
     @FXML
     private MenuItem menuitem_vehicle_table;
+
+    @FXML
+    private MenuItem menuitem_seller_table;
 
 
     @Override
@@ -38,6 +50,36 @@ public class HelloController implements Initializable {
                 Stage stage = (Stage) mymenubar.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Add new vehicle");
+                stage.setMaxHeight(900);
+                stage.setMaxWidth(1200);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuitem_addnew_seller.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(AddNewSeller.class.getResource("add_new_seller.fxml"));
+            try {
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) mymenubar.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Add new seller");
+                stage.setMaxHeight(900);
+                stage.setMaxWidth(1200);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuitem_addnew_customer.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(AddNewCustomer.class.getResource("add_new_customer.fxml"));
+            try {
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) mymenubar.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Add new seller");
                 stage.setMaxHeight(900);
                 stage.setMaxWidth(1200);
                 stage.show();
@@ -61,10 +103,24 @@ public class HelloController implements Initializable {
             }
         });
 
+        menuitem_seller_table.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(VehicleTable.class.getResource("seller_table.fxml"));
+            try {
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) mymenubar.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Seller Table");
+                stage.setMaxHeight(900);
+                stage.setMaxWidth(1200);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
 
     }
 
-//    ============= METHODS ==================
 
 }
 

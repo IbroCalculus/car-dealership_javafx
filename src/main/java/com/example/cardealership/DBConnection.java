@@ -1,10 +1,5 @@
 package com.example.cardealership;
 
-import com.example.cardealership.model.ModelTableView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
-
 import java.io.InputStream;
 import java.sql.*;
 
@@ -55,7 +50,7 @@ public class DBConnection {
 
 
     //    ---------- INSERTING DATA INTO DATABASE TABLE ----------------
-    public static boolean saveVehicleData(String vehicle_name, String manufacturer, String construction_year, Double km_stood, String vehicle_condition, int pieces, Double price, String currency, InputStream picture) {
+    public static void saveVehicleData(String vehicle_name, String manufacturer, String construction_year, Double km_stood, String vehicle_condition, int pieces, Double price, String currency, InputStream picture) {
         try {
             String query = "INSERT INTO vehicle (vehicle_name, manufacturer, construction_year, km_stood, vehicle_condition, pieces, price, currency, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = conn.prepareStatement(query);
@@ -73,17 +68,15 @@ public class DBConnection {
 
             if (rowsInserted > 0) {
                 System.out.println("Data inserted successfully!");
-                return true; // Data was inserted successfully
             } else {
                 System.out.println("No data inserted.");
-                return false; // No data was inserted
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    //    ---------- READ DATA FROM DATABASE TABLE ----------------
+    //    ---------- READ VEHICLE DATA FROM DATABASE TABLE ----------------
     public static ResultSet retrieveVehicleData() {
         try {
             resultSet = statement.executeQuery("SELECT * FROM vehicle");
@@ -127,6 +120,120 @@ public class DBConnection {
             preparedStatement.setInt(1, vehicle_id);
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+//    ======================================================================================================
+//    =================================== SELLER TABLE ==============================
+
+    //    ---------- INSERTING DATA INTO DATABASE TABLE ----------------
+    public static void saveSellerData(String seller_name, String seller_phone_number, String seller_email, String seller_address, InputStream picture) {
+        try {
+            String query = "INSERT INTO seller (seller_name, seller_phone, seller_email, seller_address, picture) VALUES (?, ?, ?, ?, ?)";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, seller_name);
+            preparedStatement.setString(2, seller_phone_number);
+            preparedStatement.setString(3, seller_email);
+            preparedStatement.setString(4, seller_address);
+            preparedStatement.setBlob(5, picture);
+            int rowsInserted = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            if (rowsInserted > 0) {
+                System.out.println("Data inserted successfully!");
+            } else {
+                System.out.println("No data inserted.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    ---------- RETRIEVE SELLER DATA FROM DATABASE TABLE ----------------
+    public static ResultSet retrieveSellerData() {
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM seller");
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    ---------- RETRIEVE SINGLE SELLER DATA FROM DATABASE SELLER TABLE FOR A PARTICULAR ID ----------------
+    public static ResultSet retrieveSingleSellerData(int seller_id) {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT * FROM seller WHERE seller_id = ?");
+            preparedStatement.setInt(1, seller_id);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean updateSellerPicture(int seller_id, InputStream picture) {
+        try {
+            preparedStatement = conn.prepareStatement("UPDATE seller SET picture=? WHERE seller_id=?");
+            preparedStatement.setBlob(1, picture);
+            preparedStatement.setInt(2, seller_id);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0; // Return true if at least one row was updated
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean updateSellerData(int seller_id, String seller_name, String seller_phone, String seller_email, String seller_address) {
+        try {
+            preparedStatement = conn.prepareStatement("UPDATE seller SET seller_name = ?, seller_phone = ?, seller_email = ?, seller_address = ? WHERE seller_id=?");
+            preparedStatement.setString(1, seller_name);
+            preparedStatement.setString(2, seller_phone);
+            preparedStatement.setString(3, seller_email);
+            preparedStatement.setString(4, seller_address);
+            preparedStatement.setInt(5, seller_id);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0; // Return true if at least one row was updated
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean deleteSellerData(int seller_id) {
+        try {
+            preparedStatement = conn.prepareStatement("DELETE FROM seller WHERE seller_id=?");
+            preparedStatement.setInt(1, seller_id);
+            int rowsDeleted = preparedStatement.executeUpdate();
+            return rowsDeleted > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+//    ======================================================================================================
+//    =================================== SELLER TABLE ==============================
+
+    //    ---------- INSERTING DATA INTO DATABASE TABLE ----------------
+    public static void saveCustomerData(String customer_name, String customer_phone_number, String customer_email, String customer_address) {
+        try {
+            String query = "INSERT INTO customer (customer_name, customer_phone, customer_email, customer_address) VALUES (?, ?, ?, ?)";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, customer_name);
+            preparedStatement.setString(2, customer_phone_number);
+            preparedStatement.setString(3, customer_email);
+            preparedStatement.setString(4, customer_address);
+            int rowsInserted = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            if (rowsInserted > 0) {
+                System.out.println("Data inserted successfully!");
+            } else {
+                System.out.println("No data inserted.");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

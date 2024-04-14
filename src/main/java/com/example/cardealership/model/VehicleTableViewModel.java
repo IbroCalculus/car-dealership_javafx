@@ -1,9 +1,9 @@
 package com.example.cardealership.model;
 
-public class ModelTableView {
+public class VehicleTableViewModel {
     private String id, vehicle_name, manufacturer, construction_year, km_stood, vehicle_condition, pieces, price, currency, availability;
 
-    public ModelTableView(String id, String vehicle_name, String manufacturer, String construction_year, String km_stood, String vehicle_condition, String pieces, String price, String currency, String availability) {
+    public VehicleTableViewModel(String id, String vehicle_name, String manufacturer, String construction_year, String km_stood, String vehicle_condition, String pieces, String price, String currency, String availability) {
         this.id = id;
         this.vehicle_name = vehicle_name;
         this.manufacturer = manufacturer;
@@ -96,3 +96,4 @@ public class ModelTableView {
         this.availability = availability;
     }
 }
+
