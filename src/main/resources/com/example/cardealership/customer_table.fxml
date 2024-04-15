@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cardealership.SellerTable">
+<AnchorPane fx:id="my_anchor_pane" prefHeight="900.0" prefWidth="1200.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cardealership.CustomerTable">
     <children>
-        <Label layoutX="428.0" layoutY="52.0" text="Seller Table" textFill="#00aaff">
+        <Label layoutX="428.0" layoutY="52.0" text="Customer Table" textFill="#00aaff">
             <font>
                 <Font name="Arial Bold Italic" size="50.0" />
             </font>
         </Label>
-        <TableView fx:id="tableview_seller" layoutX="14.0" layoutY="132.0" prefHeight="585.0" prefWidth="1150.0" style="-fx-cursor: hand;" AnchorPane.leftAnchor="20.0">
+        <TableView fx:id="tableview_customer" layoutX="14.0" layoutY="132.0" prefHeight="585.0" prefWidth="1150.0" style="-fx-cursor: hand;" AnchorPane.leftAnchor="20.0">
             <columns>
                 <TableColumn fx:id="tablecolumn_id" prefWidth="104.22225379943848" styleClass="tableHeader" text="ID" />
-                <TableColumn fx:id="tablecolumn_seller_name" prefWidth="167.55548095703125" styleClass="tableHeader" text="Seller name" />
+                <TableColumn fx:id="tablecolumn_customer_name" prefWidth="167.55548095703125" styleClass="tableHeader" text="Name" />
                 <TableColumn fx:id="tablecolumn_phone_number" prefWidth="191.99996948242188" styleClass="tableHeader" text="Phone number" />
-                <TableColumn fx:id="tablecolumn_email" prefWidth="234.0" styleClass="tableHeader" text="Seller Email" />
+                <TableColumn fx:id="tablecolumn_email" prefWidth="234.0" styleClass="tableHeader" text="Email" />
                 <TableColumn fx:id="tablecolumn_address" prefWidth="452.6666259765625" styleClass="tableHeader" text="Address" />
             </columns>
         </TableView>

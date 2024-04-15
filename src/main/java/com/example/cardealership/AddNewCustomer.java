@@ -100,6 +100,19 @@ public class AddNewCustomer implements Initializable {
             } else {
                 DBConnection.saveCustomerData(customer_name, customer_phone_number, customer_email, customer_address);
                 customAlert(Alert.AlertType.CONFIRMATION, "Success", "Saved", "Data saved to database successfully");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(CustomerTable.class.getResource("customer_table.fxml"));
+                try {
+                    Parent root = fxmlLoader.load();
+                    Stage stage = (Stage) btn_save.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Seller Table");
+                    stage.setMaxHeight(900);
+                    stage.setMaxWidth(1200);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         });

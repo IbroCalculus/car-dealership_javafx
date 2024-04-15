@@ -48,7 +48,6 @@ public class DBConnection {
         }
     }
 
-
     //    ---------- INSERTING DATA INTO DATABASE TABLE ----------------
     public static void saveVehicleData(String vehicle_name, String manufacturer, String construction_year, Double km_stood, String vehicle_condition, int pieces, Double price, String currency, InputStream picture) {
         try {
@@ -215,7 +214,7 @@ public class DBConnection {
 
 
 //    ======================================================================================================
-//    =================================== SELLER TABLE ==============================
+//    =================================== CUSTOMER TABLE ==============================
 
     //    ---------- INSERTING DATA INTO DATABASE TABLE ----------------
     public static void saveCustomerData(String customer_name, String customer_phone_number, String customer_email, String customer_address) {
@@ -238,6 +237,69 @@ public class DBConnection {
             throw new RuntimeException(e);
         }
     }
+
+    //    ---------- RETRIEVE CUSTOMER DATA FROM DATABASE TABLE ----------------
+    public static ResultSet retrieveCustomerData() {
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM customer");
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    ---------- RETRIEVE SINGLE SELLER DATA FROM DATABASE SELLER TABLE FOR A PARTICULAR ID ----------------
+    public static ResultSet retrieveSingleCustomerData(int customer_id) {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT * FROM customer WHERE customer_id = ?");
+            preparedStatement.setInt(1, customer_id);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean updateCustomerData(int customer_id, String customer_name, String customer_phone, String customer_email, String customer_address) {
+        try {
+            preparedStatement = conn.prepareStatement("UPDATE customer SET customer_name = ?, customer_phone = ?, customer_email = ?, customer_address = ? WHERE customer_id=?");
+            preparedStatement.setString(1, customer_name);
+            preparedStatement.setString(2, customer_phone);
+            preparedStatement.setString(3, customer_email);
+            preparedStatement.setString(4, customer_address);
+            preparedStatement.setInt(5, customer_id);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0; // Return true if at least one row was updated
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean deleteCustomerData(int customer_id) {
+        try {
+            preparedStatement = conn.prepareStatement("DELETE FROM customer WHERE customer_id=?");
+            preparedStatement.setInt(1, customer_id);
+            int rowsDeleted = preparedStatement.executeUpdate();
+            return rowsDeleted > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+//    ================================================ RETRIEVE ALL VEHICLES FROM vehicle TABLE =================================
+//    ---------- RETRIEVE ALL VEHICLES FROM vehicle TABLE ----------------
+public static ResultSet retrieveAllVehicles(String availability_status) {
+    try {
+        preparedStatement = conn.prepareStatement("SELECT vehicle_name FROM vehicle WHERE availability = ?");
+        preparedStatement.setString(1, availability_status);
+        resultSet = preparedStatement.executeQuery();
+        return resultSet;
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+
 
 }
 

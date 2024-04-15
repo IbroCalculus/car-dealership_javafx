@@ -1,9 +1,9 @@
 package com.example.cardealership.model;
 
-public class SellerTableViewModel {
+public class SellerTableModel {
     private String id, seller_name, phone_number, seller_email, address;
 
-    public SellerTableViewModel(String id, String seller_name, String phone_number, String seller_email, String address) {
+    public SellerTableModel(String id, String seller_name, String phone_number, String seller_email, String address) {
         this.id = id;
         this.seller_name = seller_name;
         this.phone_number = phone_number;

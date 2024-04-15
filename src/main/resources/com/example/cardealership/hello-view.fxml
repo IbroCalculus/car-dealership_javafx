@@ -88,11 +88,27 @@
                         </ImageView>
                      </graphic>
                   </MenuItem>
+                  <MenuItem fx:id="menuitem_customer_table" mnemonicParsing="false" text="Customer Table">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images2/add-user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Deal">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuitem_deal" mnemonicParsing="false" text="Do Business">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images2/deal.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
             </items>
           </Menu>
         </menus>

@@ -114,7 +114,6 @@ public class SelectedSeller implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
 
         btn_upload_picture.setOnAction(event -> {

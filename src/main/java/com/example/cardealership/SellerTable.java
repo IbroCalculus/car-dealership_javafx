@@ -1,6 +1,6 @@
 package com.example.cardealership;
 
-import com.example.cardealership.model.SellerTableViewModel;
+import com.example.cardealership.model.SellerTableModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,22 +25,22 @@ public class SellerTable implements Initializable {
     private Button btn_main_menu;
 
     @FXML
-    private TableColumn<SellerTableViewModel, String> tablecolumn_address;
+    private TableColumn<SellerTableModel, String> tablecolumn_address;
 
     @FXML
-    private TableColumn<SellerTableViewModel, String> tablecolumn_email;
+    private TableColumn<SellerTableModel, String> tablecolumn_email;
 
     @FXML
-    private TableColumn<SellerTableViewModel, String> tablecolumn_id;
+    private TableColumn<SellerTableModel, String> tablecolumn_id;
 
     @FXML
-    private TableColumn<SellerTableViewModel, String> tablecolumn_phone_number;
+    private TableColumn<SellerTableModel, String> tablecolumn_phone_number;
 
     @FXML
-    private TableColumn<SellerTableViewModel, String> tablecolumn_seller_name;
+    private TableColumn<SellerTableModel, String> tablecolumn_seller_name;
 
     @FXML
-    private TableView<SellerTableViewModel> tableview_seller;
+    private TableView<SellerTableModel> tableview_seller;
 
     ResultSet resultSet;
 
@@ -64,17 +64,17 @@ public class SellerTable implements Initializable {
                 picture = resultSet.getBlob("picture");
 
                 String id2 = String.valueOf(id);
-                SellerTableViewModel sellerTableViewModel = new SellerTableViewModel(id2, seller_name, seller_phone, email, address);
-                tableview_seller.getItems().add(sellerTableViewModel);
+                SellerTableModel sellerTableModel = new SellerTableModel(id2, seller_name, seller_phone, email, address);
+                tableview_seller.getItems().add(sellerTableModel);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        tablecolumn_id.setCellValueFactory(new PropertyValueFactory<SellerTableViewModel, String>("id"));
-        tablecolumn_seller_name.setCellValueFactory(new PropertyValueFactory<SellerTableViewModel, String>("seller_name"));
-        tablecolumn_phone_number.setCellValueFactory(new PropertyValueFactory<SellerTableViewModel, String>("phone_number"));
-        tablecolumn_email.setCellValueFactory(new PropertyValueFactory<SellerTableViewModel, String>("seller_email"));
-        tablecolumn_address.setCellValueFactory(new PropertyValueFactory<SellerTableViewModel, String>("address"));
+        tablecolumn_id.setCellValueFactory(new PropertyValueFactory<SellerTableModel, String>("id"));
+        tablecolumn_seller_name.setCellValueFactory(new PropertyValueFactory<SellerTableModel, String>("seller_name"));
+        tablecolumn_phone_number.setCellValueFactory(new PropertyValueFactory<SellerTableModel, String>("phone_number"));
+        tablecolumn_email.setCellValueFactory(new PropertyValueFactory<SellerTableModel, String>("seller_email"));
+        tablecolumn_address.setCellValueFactory(new PropertyValueFactory<SellerTableModel, String>("address"));
 
 
         btn_main_menu.setOnAction(event -> {

@@ -1,6 +1,6 @@
 package com.example.cardealership;
 
-import com.example.cardealership.model.VehicleTableViewModel;
+import com.example.cardealership.model.VehicleTableModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,37 +26,37 @@ public class VehicleTable implements Initializable {
     private Button btn_main_menu;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_availability;
+    private TableColumn<VehicleTableModel, String> tablecolumn_availability;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_condition;
+    private TableColumn<VehicleTableModel, String> tablecolumn_condition;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_construction_year;
+    private TableColumn<VehicleTableModel, String> tablecolumn_construction_year;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_currency;
+    private TableColumn<VehicleTableModel, String> tablecolumn_currency;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_id;
+    private TableColumn<VehicleTableModel, String> tablecolumn_id;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_km_stood;
+    private TableColumn<VehicleTableModel, String> tablecolumn_km_stood;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_manufacturer;
+    private TableColumn<VehicleTableModel, String> tablecolumn_manufacturer;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_pieces;
+    private TableColumn<VehicleTableModel, String> tablecolumn_pieces;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_price;
+    private TableColumn<VehicleTableModel, String> tablecolumn_price;
 
     @FXML
-    private TableColumn<VehicleTableViewModel, String> tablecolumn_vehicle_name;
+    private TableColumn<VehicleTableModel, String> tablecolumn_vehicle_name;
 
     @FXML
-    private TableView<VehicleTableViewModel> tableview_vehicle;
+    private TableView<VehicleTableModel> tableview_vehicle;
     ResultSet resultSet;
 
     public static int id;
@@ -94,23 +94,23 @@ public class VehicleTable implements Initializable {
                 String pieces2 = String.valueOf(pieces);
                 String price2 = String.valueOf(price);
 
-                VehicleTableViewModel vehicleTableViewModel = new VehicleTableViewModel(id2, vehicle_name, manufacturer, construction_year, km_stood2, vehicle_condition, pieces2, price2, currency, availability);
-                tableview_vehicle.getItems().add(vehicleTableViewModel);
+                VehicleTableModel vehicleTableModel = new VehicleTableModel(id2, vehicle_name, manufacturer, construction_year, km_stood2, vehicle_condition, pieces2, price2, currency, availability);
+                tableview_vehicle.getItems().add(vehicleTableModel);
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        tablecolumn_id.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("id"));
-        tablecolumn_vehicle_name.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("vehicle_name"));
-        tablecolumn_manufacturer.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("manufacturer"));
-        tablecolumn_construction_year.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("construction_year"));
-        tablecolumn_km_stood.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("km_stood"));
-        tablecolumn_condition.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("vehicle_condition"));
-        tablecolumn_pieces.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("pieces"));
-        tablecolumn_price.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("price"));
-        tablecolumn_currency.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("currency"));
-        tablecolumn_availability.setCellValueFactory(new PropertyValueFactory<VehicleTableViewModel, String>("availability"));
+        tablecolumn_id.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("id"));
+        tablecolumn_vehicle_name.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("vehicle_name"));
+        tablecolumn_manufacturer.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("manufacturer"));
+        tablecolumn_construction_year.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("construction_year"));
+        tablecolumn_km_stood.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("km_stood"));
+        tablecolumn_condition.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("vehicle_condition"));
+        tablecolumn_pieces.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("pieces"));
+        tablecolumn_price.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("price"));
+        tablecolumn_currency.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("currency"));
+        tablecolumn_availability.setCellValueFactory(new PropertyValueFactory<VehicleTableModel, String>("availability"));
 
         btn_main_menu.setOnAction(event -> {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("hello-view.fxml"));
