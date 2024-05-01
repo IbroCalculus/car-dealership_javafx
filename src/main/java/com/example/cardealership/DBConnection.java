@@ -289,7 +289,7 @@ public class DBConnection {
 
 //    ================================================ RETRIEVE ALL VEHICLES FROM vehicle TABLE =================================
 //    ---------- RETRIEVE ALL VEHICLES FROM vehicle TABLE ----------------
-public static ResultSet retrieveAllVehicles(String availability_status) {
+    public static ResultSet retrieveAllVehicles(String availability_status) {
     try {
         preparedStatement = conn.prepareStatement("SELECT vehicle_name FROM vehicle WHERE availability = ?");
         preparedStatement.setString(1, availability_status);
@@ -300,7 +300,78 @@ public static ResultSet retrieveAllVehicles(String availability_status) {
     }
 }
 
+    //    ---------- RETRIEVE ALL CUSTOMER NAMES FROM customer TABLE ----------------
+    public static ResultSet retrieveAllCustomerNames() {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT customer_name FROM customer");
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    //    ---------- RETRIEVE ALL SELLER NAMES FROM customer TABLE ----------------
+    public static ResultSet retrieveAllSellerNames() {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT seller_name FROM seller");
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //    ---------- RETRIEVE NUMBER OF VEHICLE FOR SPECIFIC VEHICLE NAME ----------------
+    public static ResultSet retrieveNumberOfVehicle(String vehicle_name) {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT pieces FROM vehicle WHERE vehicle_name = ?");
+            preparedStatement.setString(1, vehicle_name);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public static void insertDeal(String vehicleName, String customerName, String sellerName, String numberOfVehicle, String dateDay, String dateMonth, String dateYear) {
+
+        try {
+            String query = "INSERT INTO customer (vehicle_name, customer_name, seller_name, pieces, date_day, date_month, date_year) VALUES (?, ?, ?, ?, ?, ?, ?))";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, vehicleName);
+            preparedStatement.setString(2, customerName);
+            preparedStatement.setString(3, sellerName);
+            preparedStatement.setString(4, numberOfVehicle);
+            preparedStatement.setString(5, dateDay);
+            preparedStatement.setString(6, dateMonth);
+            preparedStatement.setString(7, dateYear);
+            int rowsInserted = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            if (rowsInserted > 0) {
+                System.out.println("Data inserted successfully!");
+            } else {
+                System.out.println("No data inserted.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public static ResultSet retrieveVehiclePrice(String vehicle_name) {
+        try {
+            preparedStatement = conn.prepareStatement("SELECT price FROM vehicle WHERE vehicle_name = ?");
+            preparedStatement.setString(1, vehicle_name);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

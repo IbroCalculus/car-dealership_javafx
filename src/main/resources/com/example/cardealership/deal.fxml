@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +36,7 @@
                 <Font name="Arial Bold Italic" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="54.0" layoutY="481.6666666666667" minHeight="25.0" text="Number of vehicle" textFill="#00aaff" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="481.6666666666667">
+        <Label layoutX="54.0" layoutY="481.6666666666667" minHeight="25.0" text="Count sold vehicles" textFill="#00aaff" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="481.6666666666667">
             <font>
                 <Font name="Arial Bold Italic" size="16.0" />
             </font>
@@ -64,6 +65,9 @@
             <font>
                 <Font name="Arial Bold Italic" size="16.0" />
             </font>
+         <effect>
+            <DropShadow />
+         </effect>
         </Button>
         <Button fx:id="btn_main_menu" layoutX="671.0" layoutY="680.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="410.0" style="-fx-background-color: #aaaaff; -fx-cursor: hand;" text="Main Menu" textAlignment="RIGHT" AnchorPane.topAnchor="680.0">
             <font>
